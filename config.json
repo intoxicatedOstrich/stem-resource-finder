@@ -1,0 +1,85 @@
+{
+  "serper_api": {
+    "base_url": "https://google.serper.dev/search",
+    "results_per_query": 10,
+    "timeout": 30
+  },
+  "difficulty_levels": 4,
+  "preferred_domains": [
+    "khanacademy.org",
+    "mathisfun.com",
+    "purplemath.com",
+    "mit.edu",
+    "stanford.edu",
+    "wolfram.com",
+    "mathway.com",
+    "symbolab.com",
+    "paul.math.com",
+    "tutorial.math.lamar.edu",
+    "brilliant.org",
+    "coursera.org",
+    "edx.org"
+  ],
+  "problem_types": {
+    "calculus": {
+      "keywords": ["integration", "differentiation", "limits", "derivative", "integral", "calculus"],
+      "difficulty_markers": {
+        "basic": ["polynomial", "linear", "simple"],
+        "intermediate": ["trigonometric", "exponential", "logarithmic", "substitution"],
+        "advanced": ["partial fractions", "integration by parts", "series", "multivariable"]
+      }
+    },
+    "algebra": {
+      "keywords": ["equation", "polynomial", "factoring", "quadratic", "linear", "algebra"],
+      "difficulty_markers": {
+        "basic": ["linear equation", "simple factoring", "basic algebra"],
+        "intermediate": ["quadratic", "system of equations", "rational expressions"],
+        "advanced": ["complex numbers", "matrix", "advanced factoring"]
+      }
+    },
+    "physics": {
+      "keywords": ["force", "velocity", "acceleration", "energy", "momentum", "physics"],
+      "difficulty_markers": {
+        "basic": ["kinematics", "simple forces", "basic energy"],
+        "intermediate": ["circular motion", "work and energy", "momentum"],
+        "advanced": ["electromagnetic", "thermodynamics", "quantum"]
+      }
+    },
+    "chemistry": {
+      "keywords": ["reaction", "molecule", "element", "bond", "chemistry", "equation"],
+      "difficulty_markers": {
+        "basic": ["balancing equations", "moles", "basic reactions"],
+        "intermediate": ["stoichiometry", "thermochemistry", "kinetics"],
+        "advanced": ["organic chemistry", "equilibrium", "electrochemistry"]
+      }
+    },
+    "geometry": {
+      "keywords": ["triangle", "circle", "angle", "area", "volume", "geometry"],
+      "difficulty_markers": {
+        "basic": ["basic shapes", "perimeter", "area"],
+        "intermediate": ["similarity", "congruence", "coordinate geometry"],
+        "advanced": ["trigonometry", "analytic geometry", "proofs"]
+      }
+    }
+  },
+  "search_terms": {
+    "difficulty_modifiers": {
+      "easier": ["basic", "simple", "introduction to", "beginner", "fundamentals"],
+      "practice": ["practice problems", "examples", "step by step", "worked examples"],
+      "solutions": ["solutions", "answers", "solved", "how to solve"]
+    }
+  },
+  "ocr_settings": {
+    "confidence_threshold": 0.7,
+    "preprocessing": {
+      "enhance_contrast": true,
+      "remove_noise": true,
+      "deskew": true
+    }
+  },
+  "scoring_weights": {
+    "domain_preference": 0.3,
+    "content_relevance": 0.4,
+    "difficulty_match": 0.3
+  }
+}
