@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "stem-resource-finder"
+version = "0.1.0"
+description = "A CLI tool that creates learning progressions for STEM problems using GPT-5 analysis and web search"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+openai = ">=1.0.0"
+requests = ">=2.31.0"
+python-dotenv = ">=1.0.0"
+beautifulsoup4 = ">=4.12.2"
+rich = ">=13.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+stem-finder = "problem_ladder:main"

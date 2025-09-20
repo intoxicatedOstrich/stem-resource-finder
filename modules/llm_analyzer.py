@@ -10,77 +10,58 @@ class LLMProblemAnalyzer:
 
     def analyze_problem(self, problem_text: str) -> Dict:
         prompt = f"""
-You are an expert STEM educator analyzing a student's problem to create a learning progression.
+You are an expert STEM educator. Analyze this problem by first solving it completely, then creating a dynamic learning progression.
 
 PROBLEM: {problem_text}
 
-Your task:
-1. Identify the subject area and key concepts
-2. Rate difficulty (1-10) with reasoning
-3. Create a 4-level learning ladder from basic to the target problem
-4. Generate specific search queries to find practice problems for each level
+STEP 1 - SOLVE THE PROBLEM:
+First, work through the complete solution step-by-step. Identify every technique, concept, and sub-skill required.
+
+STEP 2 - TECHNIQUE ANALYSIS:
+For each technique identified:
+- Rate its complexity within the subject domain (1-10)
+- Determine prerequisite knowledge needed
+- Assess if it needs further breakdown
+
+STEP 3 - DYNAMIC PROGRESSION:
+Based on the techniques needed, determine how many learning levels are required (typically 2-6 levels).
+Create a progression where each level introduces 1-2 key techniques in logical order.
 
 Return a structured JSON response:
 {{
+    "problem_solution": {{
+        "complete_solution": "Step-by-step solution showing all work...",
+        "techniques_used": [
+            {{
+                "name": "integration by parts",
+                "complexity": 7,
+                "required_for": "handling x² with trigonometric functions",
+                "prerequisites": ["basic integration", "product rule for derivatives"]
+            }}
+        ]
+    }},
     "problem_analysis": {{
         "subject": "calculus",
-        "difficulty": 8,
-        "concepts": ["integration by parts", "trigonometric substitution"],
-        "prerequisite_knowledge": ["basic integration", "trigonometry"],
-        "reasoning": "This problem requires advanced integration techniques..."
+        "overall_difficulty": 8,
+        "complexity_factors": ["multiple techniques combined", "trigonometric identities", "algebraic manipulation"],
+        "estimated_levels_needed": 4,
+        "reasoning": "This problem combines polynomial and trigonometric integration requiring multiple advanced techniques..."
     }},
     "learning_progression": [
         {{
             "level": 1,
-            "title": "Basic Polynomial Integration",
+            "title": "Foundation Level Name",
             "difficulty": 3,
-            "concepts_introduced": ["power rule"],
-            "example_problem": "∫ x^2 dx",
-            "search_queries": [
-                "basic polynomial integration examples step by step",
-                "power rule integration practice problems with solutions"
-            ],
-            "why_this_level": "Establishes fundamental integration skills before adding complexity"
-        }},
-        {{
-            "level": 2,
-            "title": "Simple Trigonometric Integration",
-            "difficulty": 5,
-            "concepts_introduced": ["basic trig integrals"],
-            "example_problem": "∫ sin(x) dx",
-            "search_queries": [
-                "basic trigonometric integration examples",
-                "sin cos integration practice problems"
-            ],
-            "why_this_level": "Introduces trigonometric functions in integration context"
-        }},
-        {{
-            "level": 3,
-            "title": "Trigonometric Powers",
-            "difficulty": 6,
-            "concepts_introduced": ["trig identities", "power reduction"],
-            "example_problem": "∫ sin²(x) dx",
-            "search_queries": [
-                "trigonometric power integration examples",
-                "sin squared cos squared integration techniques"
-            ],
-            "why_this_level": "Builds toward handling powers of trig functions"
-        }},
-        {{
-            "level": 4,
-            "title": "Advanced Trigonometric Integration",
-            "difficulty": 8,
-            "concepts_introduced": ["integration by parts with trig", "substitution"],
-            "example_problem": "∫ sin²(x)cos³(x) dx",
-            "search_queries": [
-                "advanced trigonometric integration examples",
-                "sin squared cos cubed integration solution"
-            ],
-            "why_this_level": "Target problem - combines all previous concepts"
+            "techniques_introduced": ["technique1", "technique2"],
+            "example_problems": ["problem1", "problem2"],
+            "search_queries": ["targeted search query 1", "targeted search query 2"],
+            "why_this_level": "Explains the logical progression reason",
+            "builds_toward": "Next level preparation"
         }}
     ]
 }}
-"""
+
+Make the progression adaptive - use as many levels as needed based on the actual complexity analysis."""
 
         response = self.client.chat.completions.create(
             model="gpt-5",
